@@ -1,16 +1,18 @@
-const express = require("express");
-const app = express();
-const port = process.env.PORT || 3001;
-const mongoose = require("mongoose");
-app.use(express.urlencoded({ extended: true }));
+const express = require("express"); // Importeer Express-framework voor servercreatie en routing.
+const app = express(); // Maak een nieuwe Express-toepassing aan.
+const port = process.env.PORT || 3001; // Stel de poort in waarop de server zal luisteren.
+const mongoose = require("mongoose"); // Importeer Mongoose-bibliotheek voor MongoDB-interacties.
+app.use(express.urlencoded({ extended: true })); // Middleware om URL-gecodeerde gegevens te parseren.
 
-app.set("view engine", "ejs");
-app.use(express.static("public"));
+app.set("view engine", "ejs"); // Stel EJS in als de view-engine voor het renderen van sjablonen.
+app.use(express.static("public")); // Serveer statische bestanden vanuit de "public" map.
 
-var methodOverride = require("method-override");
-app.use(methodOverride("_method"));
-const allRoutes = require("./routes/allRoutes");
-const addUserRoute = require("./routes/addUser");
+
+// Method Override Middleware
+var methodOverride = require("method-override");  
+app.use(methodOverride("_method"));  
+const allRoutes = require("./routes/allRoutes"); 
+const addUserRoute = require("./routes/addUser"); 
 
 // Auto refresh
 const path = require("path");
